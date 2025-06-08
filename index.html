@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arko Mallick - Data Analyst & Product Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --accent: #f59e0b;
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .role-toggle {
+            display: inline-flex;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 5px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .role-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 45px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .role-btn.active {
+            background: white;
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        .portfolio-content {
+            display: none;
+        }
+
+        .portfolio-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .tech-tag {
+            background: var(--bg-light);
+            color: var(--secondary);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background: var(--gradient);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .contact {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Arkadyuti Sarkar</h1>
+                <div class="role-toggle">
+                    <button class="role-btn active" onclick="switchRole('da')">Data Analyst</button>
+                    <button class="role-btn" onclick="switchRole('pm')">Product Manager</button>
+                </div>
+                <p class="hero-subtitle" id="hero-subtitle">
+                    Transforming Data into Strategic Business Insights
+                </p>
+                <div class="cta-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            
+            <!-- Data Analyst Portfolio -->
+            <div id="da-portfolio" class="portfolio-content active">
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3 class="project-title">Sales Performance Analytics Dashboard</h3>
+                        <p>Built comprehensive Tableau dashboard analyzing 3-year sales data, identifying key trends that led to 15% revenue increase through strategic recommendations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Excel</span>
+                        </div>
+                        <p><strong>Impact:</strong> Enabled data-driven decision making for sales team, resulting in improved territory allocation and product focus.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">Customer Segmentation Analysis</h3>
+                        <p>Performed advanced clustering analysis on customer behavior data to identify 5 distinct customer segments, enabling targeted marketing strategies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">Matplotlib</span>
+                        </div>
+                        <p><strong>Impact:</strong> Improved marketing campaign effectiveness by 25% through personalized targeting strategies.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">Financial KPI Automation</h3>
+                        <p>Created automated reporting system for monthly financial KPIs, reducing manual reporting time from 40 hours to 2 hours per month.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">ETL</span>
+                            <span class="tech-tag">Excel VBA</span>
+                        </div>
+                        <p><strong>Impact:</strong> Freed up 38 hours monthly for strategic analysis, improved data accuracy, and enabled real-time decision making.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product Manager Portfolio -->
+            <div id="pm-portfolio" class="portfolio-content">
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <h3 class="project-title">Feature Prioritization Framework</h3>
+                        <p>Developed data-driven prioritization framework combining user impact scores, technical effort, and business value to optimize product roadmap decisions.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Product Strategy</span>
+                            <span class="tech-tag">User Research</span>
+                            <span class="tech-tag">Analytics</span>
+                            <span class="tech-tag">Roadmapping</span>
+                        </div>
+                        <p><strong>Impact:</strong> Improved feature delivery success rate by 40% and aligned development efforts with business objectives.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">User Journey Optimization</h3>
+                        <p>Analyzed user behavior data to identify friction points in onboarding flow, redesigned experience resulting in 35% improvement in user activation.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">User Analytics</span>
+                            <span class="tech-tag">A/B Testing</span>
+                            <span class="tech-tag">Wireframing</span>
+                            <span class="tech-tag">SQL</span>
+                        </div>
+                        <p><strong>Impact:</strong> Increased monthly active users by 35% and reduced churn rate by 20% in first quarter.</p>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">Market Research & Competitive Analysis</h3>
+                        <p>Conducted comprehensive market analysis for new product launch, identifying target segments and competitive positioning strategies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Market Research</span>
+                            <span class="tech-tag">Competitive Analysis</span>
+                            <span class="tech-tag">Data Visualization</span>
+                            <span class="tech-tag">Presentation</span>
+                        </div>
+                        <p><strong>Impact:</strong> Provided strategic direction for product launch, contributing to successful go-to-market strategy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">Skills & Expertise</h2>
+            
+            <div id="da-skills" class="skills-content active">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming & Analysis</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">SQL</span>
+                            <span class="skill-item">Python</span>
+                            <span class="skill-item">R</span>
+                            <span class="skill-item">Excel/VBA</span>
+                            <span class="skill-item">Statistical Analysis</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Visualization & BI</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Tableau</span>
+                            <span class="skill-item">Power BI</span>
+                            <span class="skill-item">Looker</span>
+                            <span class="skill-item">Matplotlib</span>
+                            <span class="skill-item">Seaborn</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Data & Databases</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">MySQL</span>
+                            <span class="skill-item">PostgreSQL</span>
+                            <span class="skill-item">MongoDB</span>
+                            <span class="skill-item">ETL</span>
+                            <span class="skill-item">Data Modeling</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Business Skills</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">KPI Development</span>
+                            <span class="skill-item">Business Intelligence</span>
+                            <span class="skill-item">Stakeholder Management</span>
+                            <span class="skill-item">Reporting</span>
+                            <span class="skill-item">Data Storytelling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="pm-skills" class="skills-content" style="display: none;">
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Product Strategy</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Product Roadmapping</span>
+                            <span class="skill-item">Feature Prioritization</span>
+                            <span class="skill-item">Market Research</span>
+                            <span class="skill-item">Competitive Analysis</span>
+                            <span class="skill-item">Go-to-Market</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>User & Data</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">User Research</span>
+                            <span class="skill-item">A/B Testing</span>
+                            <span class="skill-item">Analytics</span>
+                            <span class="skill-item">User Journey Mapping</span>
+                            <span class="skill-item">Personas</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Collaboration</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Agile/Scrum</span>
+                            <span class="skill-item">Cross-functional Teams</span>
+                            <span class="skill-item">Stakeholder Management</span>
+                            <span class="skill-item">Requirements Gathering</span>
+                            <span class="skill-item">Communication</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools</h3>
+                        <div class="skill-list">
+                            <span class="skill-item">Jira</span>
+                            <span class="skill-item">Figma</span>
+                            <span class="skill-item">Miro</span>
+                            <span class="skill-item">SQL</span>
+                            <span class="skill-item">Google Analytics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Let's Connect</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 30px;">Ready to discuss how I can help drive data-driven growth for your organization.</p>
+            <div class="contact-links">
+                <a href="mailto:your.email@gmail.com" class="contact-link">Email Me</a>
+                <a href="https://linkedin.com/in/arkadyuti-sarkar" class="contact-link">LinkedIn</a>
+                <a href="https://github.com/Arko336" class="contact-link">GitHub</a>
+                <a href="/resume.pdf" class="contact-link">Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function switchRole(role) {
+            // Update button states
+            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update subtitle
+            const subtitles = {
+                'da': 'Transforming Data into Strategic Business Insights',
+                'pm': 'Building Data-Driven Products That Users Love'
+            };
+            document.getElementById('hero-subtitle').textContent = subtitles[role];
+            
+            // Show/hide portfolio content
+            document.querySelectorAll('.portfolio-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(role + '-portfolio').classList.add('active');
+            
+            // Show/hide skills content
+            document.querySelectorAll('.skills-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById(role + '-skills').style.display = 'block';
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-category').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
