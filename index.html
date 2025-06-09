@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Data Analyst & Product Manager</title>
+    <title>Arko Mallick - Data Analyst & Product Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -33,12 +34,59 @@
             padding: 0 20px;
         }
 
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links i {
+            margin-right: 8px;
+        }
+
+        /* Hero Section */
         .hero {
             background: var(--gradient);
             color: white;
-            padding: 80px 0;
+            padding: 120px 0 80px;
             position: relative;
             overflow: hidden;
+            margin-top: 80px;
         }
 
         .hero::before {
@@ -149,6 +197,62 @@
             }
         }
 
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-placeholder {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .highlight-box {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .highlight-box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Section Styles */
         .section {
             padding: 80px 0;
         }
@@ -189,7 +293,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
@@ -242,6 +346,19 @@
             font-weight: 600;
         }
 
+        .project-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            border-radius: 20px;
+        }
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -277,6 +394,44 @@
             font-weight: 600;
         }
 
+        /* Blog Section */
+        .blog {
+            background: white;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .blog-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .blog-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .blog-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 10px 0;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
         .contact {
             background: var(--text-dark);
             color: white;
@@ -298,6 +453,9 @@
             border: 2px solid var(--primary);
             border-radius: 30px;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .contact-link:hover {
@@ -305,7 +463,12 @@
             transform: translateY(-3px);
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -319,14 +482,42 @@
                 align-items: center;
             }
             
-            .projects-grid,
-            .skills-grid {
+            .about-content {
                 grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .projects-grid,
+            .skills-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">Arko Mallick</div>
+                <ul class="nav-links">
+                    <li><a href="#about"><i class="fas fa-user"></i>About</a></li>
+                    <li><a href="#portfolio"><i class="fas fa-briefcase"></i>Projects</a></li>
+                    <li><a href="#skills"><i class="fas fa-cogs"></i>Skills</a></li>
+                    <li><a href="#blog"><i class="fas fa-blog"></i>Insights</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i>Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -336,7 +527,7 @@
                     <button class="role-btn" onclick="switchRole('pm')">Product Manager</button>
                 </div>
                 <p class="hero-subtitle" id="hero-subtitle">
-                    Data Analyst Transitioning to Product Management
+                    Transforming Data into Strategic Product Decisions
                 </p>
                 <div class="cta-buttons">
                     <a href="#portfolio" class="btn btn-primary">View My Work</a>
@@ -346,6 +537,33 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <div class="profile-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>About Me</h2>
+                    <p>With 6 years of experience as a Data Analyst, I've developed a passion for understanding user behavior and driving product strategy through data-driven insights. My analytical background has taught me that the most impactful decisions come from combining quantitative analysis with deep user empathy.</p>
+                    
+                    <p>Currently transitioning to Product Management, I bring a unique perspective that bridges the gap between data science and product strategy. I believe that great products are built on solid data foundations, and I'm excited to leverage my analytical skills to create meaningful user experiences.</p>
+                    
+                    <div class="highlight-box">
+                        <h3><i class="fas fa-lightbulb"></i> My Approach</h3>
+                        <p>I combine rigorous data analysis with user-centered thinking to identify opportunities, validate hypotheses, and measure success. My goal is to build products that not only solve real problems but do so in ways that are measurable and scalable.</p>
+                    </div>
+                    
+                    <p>When I'm not analyzing data or studying product management frameworks, you'll find me exploring new technologies, contributing to open-source projects, or sharing insights about the intersection of data and product strategy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
     <section id="portfolio" class="section">
         <div class="container">
             <h2 class="section-title">Portfolio</h2>
@@ -354,125 +572,153 @@
             <div id="da-portfolio" class="portfolio-content active">
                 <div class="projects-grid">
                     <div class="project-card">
-                        <h3 class="project-title">Sales Performance Analytics Dashboard</h3>
-                        <p>Built comprehensive Tableau dashboard analyzing 3-year sales data, identifying key trends that led to 15% revenue increase through strategic recommendations.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">SQL</span>
-                            <span class="tech-tag">Tableau</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Excel</span>
-                        </div>
-                        <p><strong>Impact:</strong> Enabled data-driven decision making for sales team, resulting in improved territory allocation and product focus.</p>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3 class="project-title">Customer Segmentation Analysis</h3>
-                        <p>Performed advanced clustering analysis on customer behavior data to identify 5 distinct customer segments, enabling targeted marketing strategies.</p>
+                        <h3 class="project-title">E-commerce Customer Segmentation & RFM Analysis</h3>
+                        <p>End-to-end customer analytics pipeline analyzing 500K+ transactions to identify high-value customer segments and predict churn risk using RFM modeling and machine learning clustering techniques.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Python</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Power BI</span>
                             <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">RFM Analysis</span>
                         </div>
-                        <p><strong>Impact:</strong> Improved marketing campaign effectiveness by 25% through personalized targeting strategies.</p>
+                        <p><strong>Impact:</strong> Identified top 20% customers driving 80% of revenue, enabling targeted retention campaigns with projected 15% increase in customer lifetime value.</p>
+                        <div class="project-buttons">
+                            <a href="https://github.com/Arko336/ecommerce-customer-analytics" class="btn btn-primary btn-small">View Code</a>
+                            <a href="#" class="btn btn-outline btn-small">Live Dashboard</a>
+                        </div>
                     </div>
                     
                     <div class="project-card">
-                        <h3 class="project-title">Financial KPI Automation</h3>
-                        <p>Created automated reporting system for monthly financial KPIs, reducing manual reporting time from 40 hours to 2 hours per month.</p>
+                        <h3 class="project-title">Sales Performance Analytics Dashboard</h3>
+                        <p>Comprehensive Power BI dashboard analyzing 3-year sales data across multiple dimensions, identifying key trends and performance drivers that led to strategic business recommendations.</p>
                         <div class="project-tech">
                             <span class="tech-tag">SQL</span>
                             <span class="tech-tag">Power BI</span>
-                            <span class="tech-tag">ETL</span>
-                            <span class="tech-tag">Excel VBA</span>
+                            <span class="tech-tag">DAX</span>
+                            <span class="tech-tag">Excel</span>
                         </div>
-                        <p><strong>Impact:</strong> Freed up 38 hours monthly for strategic analysis, improved data accuracy, and enabled real-time decision making.</p>
+                        <p><strong>Impact:</strong> Enabled data-driven territory allocation resulting in 15% revenue increase and improved sales team performance through KPI visibility.</p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary btn-small">View Dashboard</a>
+                            <a href="#" class="btn btn-outline btn-small">Case Study</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">Social Media Sentiment Analysis Pipeline</h3>
+                        <p>Real-time sentiment analysis system processing social media mentions using NLP techniques and automated reporting for brand monitoring and crisis management.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">NLP</span>
+                            <span class="tech-tag">APIs</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Automation</span>
+                        </div>
+                        <p><strong>Impact:</strong> Reduced brand monitoring response time from 24 hours to real-time, enabling proactive reputation management and crisis prevention.</p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary btn-small">View Code</a>
+                            <a href="#" class="btn btn-outline btn-small">Live Demo</a>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Product Management Transition Projects -->
+            <!-- Product Management Projects -->
             <div id="pm-portfolio" class="portfolio-content">
                 <div class="projects-grid">
                     <div class="project-card">
-                        <h3 class="project-title">Product Feature Impact Analysis</h3>
-                        <p>Applied data analysis skills to evaluate product feature performance, identifying user behavior patterns and recommending optimization strategies based on usage data.</p>
+                        <h3 class="project-title">Product Feature Prioritization Framework</h3>
+                        <p>Developed a comprehensive feature prioritization system combining user research, business impact analysis, and technical feasibility assessment for a mobile productivity app.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">User Research</span>
+                            <span class="tech-tag">RICE Framework</span>
+                            <span class="tech-tag">Product Strategy</span>
+                            <span class="tech-tag">Roadmapping</span>
+                        </div>
+                        <p><strong>Learning:</strong> Applied data-driven approach to product decisions, conducting user interviews and analyzing usage patterns to inform 6-month roadmap.</p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary btn-small">View Framework</a>
+                            <a href="#" class="btn btn-outline btn-small">Case Study</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">Go-to-Market Strategy: New Feature Launch</h3>
+                        <p>Created comprehensive GTM strategy for hypothetical AI-powered analytics feature, including market analysis, competitive positioning, and success metrics definition.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Market Research</span>
+                            <span class="tech-tag">Competitive Analysis</span>
+                            <span class="tech-tag">GTM Strategy</span>
+                            <span class="tech-tag">Metrics Design</span>
+                        </div>
+                        <p><strong>Skills Applied:</strong> Market sizing, customer segmentation, pricing strategy, and launch timeline development with clear success criteria.</p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary btn-small">View Strategy</a>
+                            <a href="#" class="btn btn-outline btn-small">Presentation</a>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <h3 class="project-title">Data-Driven Product Analytics Study</h3>
+                        <p>Applied analytics skills to product context by analyzing user behavior patterns, defining key product metrics, and creating actionable insights for product optimization.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Product Analytics</span>
                             <span class="tech-tag">User Behavior Analysis</span>
-                            <span class="tech-tag">SQL</span>
-                            <span class="tech-tag">Data Visualization</span>
-                        </div>
-                        <p><strong>Learning:</strong> Developed understanding of product metrics, user journey analysis, and feature prioritization frameworks.</p>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3 class="project-title">Business Requirements to Data Solutions</h3>
-                        <p>Translated complex business requirements into data-driven solutions, working cross-functionally with stakeholders to define success metrics and KPIs.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Stakeholder Management</span>
-                            <span class="tech-tag">Requirements Gathering</span>
+                            <span class="tech-tag">A/B Testing</span>
                             <span class="tech-tag">KPI Definition</span>
-                            <span class="tech-tag">Business Strategy</span>
                         </div>
-                        <p><strong>PM Skills:</strong> Experience in stakeholder communication, requirement analysis, and translating needs into technical solutions.</p>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3 class="project-title">Airtribe PM Course Projects</h3>
-                        <p>Currently completing comprehensive Product Management course covering product strategy, user research, roadmapping, and go-to-market planning.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Product Strategy</span>
-                            <span class="tech-tag">User Research</span>
-                            <span class="tech-tag">Roadmapping</span>
-                            <span class="tech-tag">Market Analysis</span>
+                        <p><strong>Unique Value:</strong> Leveraged data analysis expertise to identify user journey bottlenecks and recommend feature improvements backed by quantitative evidence.</p>
+                        <div class="project-buttons">
+                            <a href="#" class="btn btn-primary btn-small">View Analysis</a>
+                            <a href="#" class="btn btn-outline btn-small">Recommendations</a>
                         </div>
-                        <p><strong>Progress:</strong> Gaining structured PM knowledge while leveraging analytical background for data-driven product decisions.</p>
                     </div>
                 </div>
                 
-                <div style="background: #f8fafc; padding: 30px; border-radius: 15px; margin-top: 40px; border-left: 4px solid #2563eb;">
-                    <h3 style="color: #2563eb; margin-bottom: 15px;">Why I'm Transitioning to Product Management</h3>
-                    <p style="margin-bottom: 15px;">After 6 years as a Data Analyst, I've realized my passion lies in using data to solve user problems and drive product strategy. My analytical background provides a unique advantage in:</p>
-                    <ul style="margin-left: 20px; color: #64748b;">
+                <div class="highlight-box" style="margin-top: 40px;">
+                    <h3><i class="fas fa-rocket"></i> Why I'm Transitioning to Product Management</h3>
+                    <p style="margin-bottom: 15px;">After 6 years as a Data Analyst, I've realized my passion lies in using data to solve user problems and drive product strategy. My analytical background provides unique advantages in:</p>
+                    <ul style="margin-left: 20px; color: var(--secondary);">
                         <li><strong>Data-Driven Decision Making:</strong> Making product decisions backed by solid analytical evidence</li>
                         <li><strong>User Behavior Analysis:</strong> Understanding user patterns and translating them into product improvements</li>
                         <li><strong>Metrics & KPIs:</strong> Defining and tracking the right success metrics for product features</li>
-                        <li><strong>Cross-functional Communication:</strong> Bridging the gap between technical teams and business stakeholders</li>
+                        <li><strong>Cross-functional Communication:</strong> Bridging technical teams and business stakeholders</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section" style="background: white;">
+    <!-- Skills Section -->
+    <section id="skills" class="section" style="background: white;">
         <div class="container">
             <h2 class="section-title">Skills & Expertise</h2>
             
             <div id="da-skills" class="skills-content active">
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>Programming & Analysis</h3>
+                        <h3><i class="fas fa-code"></i> Programming & Analysis</h3>
                         <div class="skill-list">
                             <span class="skill-item">SQL</span>
                             <span class="skill-item">Python</span>
                             <span class="skill-item">Pandas</span>
                             <span class="skill-item">NumPy</span>
                             <span class="skill-item">Statistical Analysis</span>
+                            <span class="skill-item">Machine Learning</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Visualization & BI</h3>
+                        <h3><i class="fas fa-chart-bar"></i> Visualization & BI</h3>
                         <div class="skill-list">
                             <span class="skill-item">Power BI</span>
+                            <span class="skill-item">Tableau</span>
                             <span class="skill-item">Data Visualization</span>
                             <span class="skill-item">Dashboard Development</span>
-                            <span class="skill-item">Reporting</span>
                             <span class="skill-item">KPI Development</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Data & Analytics</h3>
+                        <h3><i class="fas fa-database"></i> Data & Analytics</h3>
                         <div class="skill-list">
                             <span class="skill-item">Data Modeling</span>
                             <span class="skill-item">ETL Processes</span>
@@ -482,7 +728,7 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Business Skills</h3>
+                        <h3><i class="fas fa-users"></i> Business Skills</h3>
                         <div class="skill-list">
                             <span class="skill-item">Stakeholder Management</span>
                             <span class="skill-item">Requirements Analysis</span>
@@ -497,7 +743,7 @@
             <div id="pm-skills" class="skills-content" style="display: none;">
                 <div class="skills-grid">
                     <div class="skill-category">
-                        <h3>PM Fundamentals (Learning)</h3>
+                        <h3><i class="fas fa-lightbulb"></i> PM Fundamentals</h3>
                         <div class="skill-list">
                             <span class="skill-item">Product Strategy</span>
                             <span class="skill-item">Product Roadmapping</span>
@@ -507,7 +753,7 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Research & Analysis</h3>
+                        <h3><i class="fas fa-search"></i> Research & Analysis</h3>
                         <div class="skill-list">
                             <span class="skill-item">User Research</span>
                             <span class="skill-item">Market Research</span>
@@ -517,7 +763,7 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Data-Driven PM Skills</h3>
+                        <h3><i class="fas fa-chart-line"></i> Data-Driven PM</h3>
                         <div class="skill-list">
                             <span class="skill-item">Product Analytics</span>
                             <span class="skill-item">A/B Testing Design</span>
@@ -527,13 +773,13 @@
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Technical Advantage</h3>
+                        <h3><i class="fas fa-cogs"></i> Technical Advantage</h3>
                         <div class="skill-list">
                             <span class="skill-item">SQL for Product Analytics</span>
                             <span class="skill-item">Python for Data Analysis</span>
-                            <span class="skill-item">Power BI for Product Dashboards</span>
-                            <span class="skill-item">Data Visualization</span>
+                            <span class="skill-item">Power BI Dashboards</span>
                             <span class="skill-item">Statistical Analysis</span>
+                            <span class="skill-item">Data Modeling</span>
                         </div>
                     </div>
                 </div>
@@ -541,80 +787,16 @@
         </div>
     </section>
 
-    <section id="contact" class="section contact">
+    <!-- Blog/Insights Section -->
+    <section id="blog" class="section blog">
         <div class="container">
-            <h2 class="section-title" style="color: white;">Let's Connect</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 30px;">Ready to discuss how I can help drive data-driven growth for your organization.</p>
-            <div class="contact-links">
-                <a href="mailto:your.email@gmail.com" class="contact-link">Email Me</a>
-                <a href="https://linkedin.com/in/arkadyuti-sarkar" class="contact-link">LinkedIn</a>
-                <a href="https://github.com/Arko336" class="contact-link">GitHub</a>
-                <a href="/resume.pdf" class="contact-link">Download Resume</a>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        function switchRole(role) {
-            // Update button states
-            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Update subtitle
-            const subtitles = {
-                'da': '6 Years of Data Analytics Experience',
-                'pm': 'Transitioning to Product Management with Data-Driven Approach'
-            };
-            document.getElementById('hero-subtitle').textContent = subtitles[role];
-            
-            // Show/hide portfolio content
-            document.querySelectorAll('.portfolio-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.getElementById(role + '-portfolio').classList.add('active');
-            
-            // Show/hide skills content
-            document.querySelectorAll('.skills-content').forEach(content => {
-                content.style.display = 'none';
-            });
-            document.getElementById(role + '-skills').style.display = 'block';
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll-triggered animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.project-card, .skill-category').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+            <h2 class="section-title">Latest Insights</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-date">June 2025</div>
+                    <h3 class="blog-title">From Data Analyst to Product Manager: My Journey</h3>
+                    <p>Exploring how 6 years of data analysis experience translates into product management skills and the unique advantages of a data-driven PM approach.</p>
+                    <a href="#" style="color: var(--primary); font-weight: 600;">Read More →</a>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-date">May 2025</div>
