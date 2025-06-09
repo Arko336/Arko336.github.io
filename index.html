@@ -26,6 +26,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--bg-light);
+            scroll-behavior: smooth;
         }
 
         .container {
@@ -252,6 +253,25 @@
             margin-bottom: 15px;
         }
 
+        .highlight-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .highlight-box li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .highlight-box li::before {
+            content: '•';
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
         /* Section Styles */
         .section {
             padding: 80px 0;
@@ -282,6 +302,15 @@
         }
 
         .portfolio-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .skills-content {
+            display: none;
+        }
+
+        .skills-content.active {
             display: block;
             animation: fadeIn 0.5s ease-out;
         }
@@ -411,6 +440,7 @@
             border-radius: 15px;
             padding: 25px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .blog-card:hover {
@@ -429,6 +459,16 @@
             font-weight: 700;
             margin: 10px 0;
             color: var(--primary);
+        }
+
+        .blog-card a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .blog-card a:hover {
+            text-decoration: underline;
         }
 
         /* Contact Section */
@@ -461,6 +501,60 @@
         .contact-link:hover {
             background: var(--primary);
             transform: translateY(-3px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close {
+            color: var(--secondary);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--primary);
+        }
+
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .modal p {
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         /* Responsive Design */
@@ -497,6 +591,11 @@
                 flex-direction: column;
                 align-items: center;
             }
+
+            .modal-content {
+                margin: 10% auto;
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -523,8 +622,8 @@
             <div class="hero-content">
                 <h1>Arko Mallick</h1>
                 <div class="role-toggle">
-                    <button class="role-btn active" onclick="switchRole('da')">Data Analyst</button>
-                    <button class="role-btn" onclick="switchRole('pm')">Product Manager</button>
+                    <button class="role-btn active" data-role="da">Data Analyst</button>
+                    <button class="role-btn" data-role="pm">Product Manager</button>
                 </div>
                 <p class="hero-subtitle" id="hero-subtitle">
                     Transforming Data into Strategic Product Decisions
@@ -678,7 +777,7 @@
                 <div class="highlight-box" style="margin-top: 40px;">
                     <h3><i class="fas fa-rocket"></i> Why I'm Transitioning to Product Management</h3>
                     <p style="margin-bottom: 15px;">After 6 years as a Data Analyst, I've realized my passion lies in using data to solve user problems and drive product strategy. My analytical background provides unique advantages in:</p>
-                    <ul style="margin-left: 20px; color: var(--secondary);">
+                    <ul>
                         <li><strong>Data-Driven Decision Making:</strong> Making product decisions backed by solid analytical evidence</li>
                         <li><strong>User Behavior Analysis:</strong> Understanding user patterns and translating them into product improvements</li>
                         <li><strong>Metrics & KPIs:</strong> Defining and tracking the right success metrics for product features</li>
@@ -740,7 +839,7 @@
                 </div>
             </div>
             
-            <div id="pm-skills" class="skills-content" style="display: none;">
+            <div id="pm-skills" class="skills-content">
                 <div class="skills-grid">
                     <div class="skill-category">
                         <h3><i class="fas fa-lightbulb"></i> PM Fundamentals</h3>
@@ -754,49 +853,3 @@
                     </div>
                     <div class="skill-category">
                         <h3><i class="fas fa-search"></i> Research & Analysis</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">User Research</span>
-                            <span class="skill-item">Market Research</span>
-                            <span class="skill-item">Competitive Analysis</span>
-                            <span class="skill-item">Customer Journey Mapping</span>
-                            <span class="skill-item">Persona Development</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-chart-line"></i> Data-Driven PM</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Product Analytics</span>
-                            <span class="skill-item">A/B Testing Design</span>
-                            <span class="skill-item">Metrics Definition</span>
-                            <span class="skill-item">User Behavior Analysis</span>
-                            <span class="skill-item">Performance Tracking</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-cogs"></i> Technical Advantage</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">SQL for Product Analytics</span>
-                            <span class="skill-item">Python for Data Analysis</span>
-                            <span class="skill-item">Power BI Dashboards</span>
-                            <span class="skill-item">Statistical Analysis</span>
-                            <span class="skill-item">Data Modeling</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog/Insights Section -->
-    <section id="blog" class="section blog">
-        <div class="container">
-            <h2 class="section-title">Latest Insights</h2>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-date">June 2025</div>
-                    <h3 class="blog-title">From Data Analyst to Product Manager: My Journey</h3>
-                    <p>Exploring how 6 years of data analysis experience translates into product management skills and the unique advantages of a data-driven PM approach.</p>
-                    <a href="#" style="color: var(--primary); font-weight: 600;">Read More →</a>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-date">May 2025</div>
