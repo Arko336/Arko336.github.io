@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arko Mallick - Data Analyst & Product Manager</title>
+    <title>Arko - Data Analytics Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -12,21 +12,11 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #2563eb;
-            --secondary: #64748b;
-            --accent: #f59e0b;
-            --bg-light: #f8fafc;
-            --text-dark: #1e293b;
-            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--bg-light);
-            scroll-behavior: smooth;
+            color: #333;
+            overflow-x: hidden;
         }
 
         .container {
@@ -35,19 +25,19 @@
             padding: 0 20px;
         }
 
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
+        /* Header Styles */
+        header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
             z-index: 1000;
-            padding: 15px 0;
-            transition: all 0.3s ease;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
-        .nav-container {
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,139 +45,362 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
+            font-weight: bold;
+            color: #667eea;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 2rem;
         }
 
         .nav-links a {
+            color: #333;
             text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
             transition: color 0.3s ease;
+            font-weight: 500;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links i {
-            margin-right: 8px;
+            color: #667eea;
         }
 
         /* Hero Section */
         .hero {
-            background: var(--gradient);
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            text-align: center;
             color: white;
-            padding: 120px 0 80px;
             position: relative;
-            overflow: hidden;
-            margin-top: 80px;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100px); }
         }
 
         .hero-content {
-            position: relative;
             z-index: 2;
-            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-greeting {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            color: #ffd700;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            animation: slideUp 1s ease-out;
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
         }
 
-        .role-toggle {
-            display: inline-flex;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50px;
-            padding: 5px;
-            margin: 20px 0;
-            backdrop-filter: blur(10px);
+        .hero-designation {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            color: #ffd700;
+            font-weight: 300;
         }
 
-        .role-btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 45px;
-            background: transparent;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
+        .hero-intro {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .role-btn.active {
-            background: white;
-            color: var(--primary);
-            transform: scale(1.05);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            animation: slideUp 1s ease-out 0.2s both;
-        }
-
-        .cta-buttons {
+        .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: slideUp 1s ease-out 0.4s both;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.8s forwards;
         }
 
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            text-decoration: none;
+        .cta-button {
             display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .btn-primary {
-            background: white;
-            color: var(--primary);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        .btn-outline {
+        .secondary-button {
+            display: inline-block;
             background: transparent;
             color: white;
-            border: 2px solid white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
         }
 
-        .btn:hover {
+        .secondary-button:hover {
+            background: rgba(255,255,255,0.1);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        @keyframes slideUp {
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: block;
+            margin: 1rem auto;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list li::before {
+            content: '✓';
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #764ba2;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -198,363 +411,16 @@
             }
         }
 
-        /* About Section */
-        .about {
-            padding: 80px 0;
-            background: white;
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-image {
-            text-align: center;
-        }
-
-        .profile-placeholder {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            color: white;
-            font-size: 4rem;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-
-        .highlight-box {
-            background: var(--bg-light);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            border-left: 4px solid var(--primary);
-        }
-
-        .highlight-box h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        .highlight-box ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .highlight-box li {
-            margin: 8px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .highlight-box li::before {
-            content: '•';
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-
-        .portfolio-content {
-            display: none;
-        }
-
-        .portfolio-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .skills-content {
-            display: none;
-        }
-
-        .skills-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
-        }
-
-        .tech-tag {
-            background: var(--bg-light);
-            color: var(--secondary);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .project-buttons {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn-small {
-            padding: 8px 16px;
-            font-size: 0.9rem;
-            border-radius: 20px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .skill-category {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .skill-category h3 {
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-item {
-            background: var(--gradient);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Blog Section */
-        .blog {
-            background: white;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .blog-card {
-            background: var(--bg-light);
-            border-radius: 15px;
-            padding: 25px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .blog-date {
-            color: var(--accent);
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .blog-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin: 10px 0;
-            color: var(--primary);
-        }
-
-        .blog-card a {
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .blog-card a:hover {
-            text-decoration: underline;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: var(--text-dark);
-            color: white;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            color: white;
-            text-decoration: none;
-            padding: 15px 25px;
-            border: 2px solid var(--primary);
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-link:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80%;
-            overflow-y: auto;
-            position: relative;
-            animation: modalSlideIn 0.3s ease-out;
-        }
-
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .close {
-            color: var(--secondary);
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close:hover {
-            color: var(--primary);
-        }
-
-        .modal h2 {
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .modal p {
-            margin-bottom: 15px;
-            line-height: 1.6;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Responsive Design */
@@ -562,76 +428,56 @@
             .nav-links {
                 display: none;
             }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .projects-grid,
-            .skills-grid,
-            .blog-grid {
-                grid-template-columns: 1fr;
+
+            .hero-designation {
+                font-size: 1.2rem;
             }
 
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
+            .section-title {
+                font-size: 2rem;
             }
 
-            .modal-content {
-                margin: 10% auto;
-                padding: 20px;
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">Arko Mallick</div>
-                <ul class="nav-links">
-                    <li><a href="#about"><i class="fas fa-user"></i>About</a></li>
-                    <li><a href="#portfolio"><i class="fas fa-briefcase"></i>Projects</a></li>
-                    <li><a href="#skills"><i class="fas fa-cogs"></i>Skills</a></li>
-                    <li><a href="#blog"><i class="fas fa-blog"></i>Insights</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i>Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Arko</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Arko Mallick</h1>
-                <div class="role-toggle">
-                    <button class="role-btn active" data-role="da">Data Analyst</button>
-                    <button class="role-btn" data-role="pm">Product Manager</button>
-                </div>
-                <p class="hero-subtitle" id="hero-subtitle">
-                    Transforming Data into Strategic Product Decisions
-                </p>
-                <div class="cta-buttons">
-                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
-                </div>
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-greeting">Hello, I'm</div>
+            <h1>Arko</h1>
+            <div class="hero-designation">Data Analytics Enthusiast</div>
+            <p class="hero-intro">I transform data into meaningful insights that drive business decisions. Passionate about uncovering patterns and telling stories through data visualization and analysis.</p>
+            
+            <div class="hero-buttons">
+                <a href="#projects" class="cta-button">
+                    <i class="fas fa-chart-bar"></i> View My Work
+                </a>
+                <a href="#contact" class="secondary-button">
+                    <i class="fas fa-envelope"></i> Get In Touch
+                </a>
             </div>
         </div>
     </section>
@@ -639,217 +485,233 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="profile-placeholder">
-                        <i class="fas fa-user"></i>
-                    </div>
-                </div>
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>With 6 years of experience as a Data Analyst, I've developed a passion for understanding user behavior and driving product strategy through data-driven insights. My analytical background has taught me that the most impactful decisions come from combining quantitative analysis with deep user empathy.</p>
-                    
-                    <p>Currently transitioning to Product Management, I bring a unique perspective that bridges the gap between data science and product strategy. I believe that great products are built on solid data foundations, and I'm excited to leverage my analytical skills to create meaningful user experiences.</p>
-                    
-                    <div class="highlight-box">
-                        <h3><i class="fas fa-lightbulb"></i> My Approach</h3>
-                        <p>I combine rigorous data analysis with user-centered thinking to identify opportunities, validate hypotheses, and measure success. My goal is to build products that not only solve real problems but do so in ways that are measurable and scalable.</p>
-                    </div>
-                    
-                    <p>When I'm not analyzing data or studying product management frameworks, you'll find me exploring new technologies, contributing to open-source projects, or sharing insights about the intersection of data and product strategy.</p>
-                </div>
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="about-content fade-in">
+                <p>I'm a passionate data analyst with a strong foundation in statistical analysis, data visualization, and business intelligence. My journey into data analytics began with a curiosity about how numbers can tell compelling stories and drive strategic decisions.</p>
+                
+                <p>I enjoy working with complex datasets to uncover hidden patterns and translate findings into actionable insights. Whether it's identifying customer trends, optimizing business processes, or creating interactive dashboards, I'm committed to making data accessible and meaningful.</p>
+                
+                <p>When I'm not analyzing data, you'll find me exploring new tools and techniques in the ever-evolving field of data science, contributing to open-source projects, or sharing knowledge with the data community.</p>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section">
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">Portfolio</h2>
-            
-            <!-- Data Analyst Portfolio -->
-            <div id="da-portfolio" class="portfolio-content active">
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3 class="project-title">E-commerce Customer Segmentation & RFM Analysis</h3>
-                        <p>End-to-end customer analytics pipeline analyzing 500K+ transactions to identify high-value customer segments and predict churn risk using RFM modeling and machine learning clustering techniques.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Power BI</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">RFM Analysis</span>
-                        </div>
-                        <p><strong>Impact:</strong> Identified top 20% customers driving 80% of revenue, enabling targeted retention campaigns with projected 15% increase in customer lifetime value.</p>
-                        <div class="project-buttons">
-                            <a href="https://github.com/Arko336/ecommerce-customer-analytics" class="btn btn-primary btn-small">View Code</a>
-                            <a href="#" class="btn btn-outline btn-small">Live Dashboard</a>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3 class="project-title">Sales Performance Analytics Dashboard</h3>
-                        <p>Comprehensive Power BI dashboard analyzing 3-year sales data across multiple dimensions, identifying key trends and performance drivers that led to strategic business recommendations.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">SQL</span>
-                            <span class="tech-tag">Power BI</span>
-                            <span class="tech-tag">DAX</span>
-                            <span class="tech-tag">Excel</span>
-                        </div>
-                        <p><strong>Impact:</strong> Enabled data-driven territory allocation resulting in 15% revenue increase and improved sales team performance through KPI visibility.</p>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-primary btn-small">View Dashboard</a>
-                            <a href="#" class="btn btn-outline btn-small">Case Study</a>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3 class="project-title">Social Media Sentiment Analysis Pipeline</h3>
-                        <p>Real-time sentiment analysis system processing social media mentions using NLP techniques and automated reporting for brand monitoring and crisis management.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">NLP</span>
-                            <span class="tech-tag">APIs</span>
-                            <span class="tech-tag">Tableau</span>
-                            <span class="tech-tag">Automation</span>
-                        </div>
-                        <p><strong>Impact:</strong> Reduced brand monitoring response time from 24 hours to real-time, enabling proactive reputation management and crisis prevention.</p>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-primary btn-small">View Code</a>
-                            <a href="#" class="btn btn-outline btn-small">Live Demo</a>
-                        </div>
-                    </div>
+            <h2 class="section-title fade-in">Technical Skills</h2>
+            <div class="skills-grid fade-in">
+                <div class="skill-card">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <ul class="skill-list">
+                        <li>Python (Pandas, NumPy, Matplotlib)</li>
+                        <li>SQL (MySQL, PostgreSQL)</li>
+                        <li>R (ggplot2, dplyr)</li>
+                        <li>JavaScript (Basic)</li>
+                    </ul>
                 </div>
-            </div>
-            
-            <!-- Product Management Projects -->
-            <div id="pm-portfolio" class="portfolio-content">
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <h3 class="project-title">Product Feature Prioritization Framework</h3>
-                        <p>Developed a comprehensive feature prioritization system combining user research, business impact analysis, and technical feasibility assessment for a mobile productivity app.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">User Research</span>
-                            <span class="tech-tag">RICE Framework</span>
-                            <span class="tech-tag">Product Strategy</span>
-                            <span class="tech-tag">Roadmapping</span>
-                        </div>
-                        <p><strong>Learning:</strong> Applied data-driven approach to product decisions, conducting user interviews and analyzing usage patterns to inform 6-month roadmap.</p>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-primary btn-small">View Framework</a>
-                            <a href="#" class="btn btn-outline btn-small">Case Study</a>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3 class="project-title">Go-to-Market Strategy: New Feature Launch</h3>
-                        <p>Created comprehensive GTM strategy for hypothetical AI-powered analytics feature, including market analysis, competitive positioning, and success metrics definition.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Market Research</span>
-                            <span class="tech-tag">Competitive Analysis</span>
-                            <span class="tech-tag">GTM Strategy</span>
-                            <span class="tech-tag">Metrics Design</span>
-                        </div>
-                        <p><strong>Skills Applied:</strong> Market sizing, customer segmentation, pricing strategy, and launch timeline development with clear success criteria.</p>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-primary btn-small">View Strategy</a>
-                            <a href="#" class="btn btn-outline btn-small">Presentation</a>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <h3 class="project-title">Data-Driven Product Analytics Study</h3>
-                        <p>Applied analytics skills to product context by analyzing user behavior patterns, defining key product metrics, and creating actionable insights for product optimization.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Product Analytics</span>
-                            <span class="tech-tag">User Behavior Analysis</span>
-                            <span class="tech-tag">A/B Testing</span>
-                            <span class="tech-tag">KPI Definition</span>
-                        </div>
-                        <p><strong>Unique Value:</strong> Leveraged data analysis expertise to identify user journey bottlenecks and recommend feature improvements backed by quantitative evidence.</p>
-                        <div class="project-buttons">
-                            <a href="#" class="btn btn-primary btn-small">View Analysis</a>
-                            <a href="#" class="btn btn-outline btn-small">Recommendations</a>
-                        </div>
-                    </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-chart-line"></i> Visualization Tools</h3>
+                    <ul class="skill-list">
+                        <li>Tableau</li>
+                        <li>Power BI</li>
+                        <li>Excel (Advanced)</li>
+                        <li>Plotly & Seaborn</li>
+                    </ul>
                 </div>
-                
-                <div class="highlight-box" style="margin-top: 40px;">
-                    <h3><i class="fas fa-rocket"></i> Why I'm Transitioning to Product Management</h3>
-                    <p style="margin-bottom: 15px;">After 6 years as a Data Analyst, I've realized my passion lies in using data to solve user problems and drive product strategy. My analytical background provides unique advantages in:</p>
-                    <ul>
-                        <li><strong>Data-Driven Decision Making:</strong> Making product decisions backed by solid analytical evidence</li>
-                        <li><strong>User Behavior Analysis:</strong> Understanding user patterns and translating them into product improvements</li>
-                        <li><strong>Metrics & KPIs:</strong> Defining and tracking the right success metrics for product features</li>
-                        <li><strong>Cross-functional Communication:</strong> Bridging technical teams and business stakeholders</li>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-brain"></i> Analytics</h3>
+                    <ul class="skill-list">
+                        <li>Statistical Analysis</li>
+                        <li>Data Cleaning & Preprocessing</li>
+                        <li>A/B Testing</li>
+                        <li>Predictive Modeling</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+                    <ul class="skill-list">
+                        <li>Jupyter Notebooks</li>
+                        <li>Git & GitHub</li>
+                        <li>Google Analytics</li>
+                        <li>AWS (Basic)</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section" style="background: white;">
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
         <div class="container">
-            <h2 class="section-title">Skills & Expertise</h2>
-            
-            <div id="da-skills" class="skills-content active">
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-code"></i> Programming & Analysis</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">SQL</span>
-                            <span class="skill-item">Python</span>
-                            <span class="skill-item">Pandas</span>
-                            <span class="skill-item">NumPy</span>
-                            <span class="skill-item">Statistical Analysis</span>
-                            <span class="skill-item">Machine Learning</span>
+            <h2 class="section-title fade-in">Featured Projects</h2>
+            <div class="projects-grid fade-in">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>E-commerce Sales Dashboard</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Interactive dashboard analyzing online sales performance with customer segmentation and trend analysis. Identified key growth opportunities and seasonal patterns.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Pandas</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-chart-bar"></i> Visualization & BI</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Power BI</span>
-                            <span class="skill-item">Tableau</span>
-                            <span class="skill-item">Data Visualization</span>
-                            <span class="skill-item">Dashboard Development</span>
-                            <span class="skill-item">KPI Development</span>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Customer Analysis</h3>
+                    </div>
+                    <div class="project-content">
+                        <p class="project-description">Comprehensive customer behavior analysis using clustering techniques to identify distinct customer segments and their purchasing patterns for targeted marketing.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">Seaborn</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="project-link"><i class="fas fa-file-alt"></i> Report</a>
                         </div>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-database"></i> Data & Analytics</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Data Modeling</span>
-                            <span class="skill-item">ETL Processes</span>
-                            <span class="skill-item">Data Cleaning</span>
-                            <span class="skill-item">Business Intelligence</span>
-                            <span class="skill-item">Performance Metrics</span>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-chart-line"></i>
                         </div>
+                        <h3>Financial KPI Tracker</h3>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-users"></i> Business Skills</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Stakeholder Management</span>
-                            <span class="skill-item">Requirements Analysis</span>
-                            <span class="skill-item">Business Strategy</span>
-                            <span class="skill-item">Data Storytelling</span>
-                            <span class="skill-item">Cross-functional Collaboration</span>
+                    <div class="project-content">
+                        <p class="project-description">Real-time financial performance dashboard tracking key metrics with automated reporting capabilities. Built for monitoring revenue, expenses, and profitability trends.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Excel</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">VBA</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Dashboard</a>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div id="pm-skills" class="skills-content">
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3><i class="fas fa-lightbulb"></i> PM Fundamentals</h3>
-                        <div class="skill-list">
-                            <span class="skill-item">Product Strategy</span>
-                            <span class="skill-item">Product Roadmapping</span>
-                            <span class="skill-item">Feature Prioritization</span>
-                            <span class="skill-item">User Story Writing</span>
-                            <span class="skill-item">Go-to-Market Strategy</span>
-                        </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content fade-in">
+                <h2 class="section-title" style="color: white;">Let's Connect</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">I'm always interested in discussing data analytics projects and opportunities. Feel free to reach out!</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>your.email@example.com</p>
                     </div>
-                    <div class="skill-category">
-                        <h3><i class="fas fa-search"></i> Research & Analysis</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Location</h4>
+                        <p>Ghaziabad, UP, India</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Phone</h4>
+                        <p>+91 XXXXX XXXXX</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://github.com/Arko336" class="social-link" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link" target="_blank" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Arko. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+</body>
+</html>
